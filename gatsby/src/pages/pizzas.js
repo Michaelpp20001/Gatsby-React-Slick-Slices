@@ -8,7 +8,7 @@ export default function PizzasPage({ data }) {
   const pizzas = data.pizzas.nodes;
   return (
     <>
-    <ToppingsFilter />
+      <ToppingsFilter />
       <PizzaList pizzas={pizzas} />
     </>
   );
