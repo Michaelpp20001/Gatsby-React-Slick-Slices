@@ -52,11 +52,12 @@ async function turnToppingsIntoPages({ graphql, actions }) {
       component: toppingTemplate,
       context: {
         topping: topping.name,
-        // TODO regex for topping
+        // TODO regex for topping, make here in javascript, because Graphql wont understand
+        toppingRegex: `/${topping.name}/i`,
       },
     });
   });
-  // 4. Pass topping data tom pizza.js
+  // 4. Pass topping data to pizza.js
 }
 
 export async function createPages(params) {
