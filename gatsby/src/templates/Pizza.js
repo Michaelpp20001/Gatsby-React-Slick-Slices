@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
+import SEO from '../components/SEO';
 
 const SinglePizzaStyles = styled.div`
   display: grid;
@@ -14,19 +15,23 @@ export default function SinglePizzaPage({ data }) {
   // destructuring pizza from the data object into a variable called pizza
   const { pizza } = data;
   return (
-    <SinglePizzaStyles>
-      <Img fluid={pizza.image.asset.fluid} alt={pizza.name} />
-      <div>
-        <h2>
-          <span className="mark">{pizza.name}</span>
-        </h2>
-        <ul>
-          {pizza.toppings.map((topping) => (
-            <li key={topping.id}>{topping.name}</li>
-          ))}
-        </ul>
-      </div>
-    </SinglePizzaStyles>
+    <>
+      {/* Nested chaining...Javascript turns these into drawn out if statement for each question mark */}
+      <SEO title={pizza.name} image={pizza.image?.asset?.fluid?.src} />
+      <SinglePizzaStyles>
+        <Img fluid={pizza.image.asset.fluid} alt={pizza.name} />
+        <div>
+          <h2>
+            <span className="mark">{pizza.name}</span>
+          </h2>
+          <ul>
+            {pizza.toppings.map((topping) => (
+              <li key={topping.id}>{topping.name}</li>
+            ))}
+          </ul>
+        </div>
+      </SinglePizzaStyles>
+    </>
   );
 }
 
