@@ -8,6 +8,7 @@ import formatMoney from '../utils/formatMoney';
 import OrderStyles from '../styles/OrderStyles';
 import MenuItemStyles from '../styles/MenuItemStyles';
 import usePizza from '../utils/usePizza';
+import PizzaOrder from '../components/PizzaOrder';
 
 export default function OrderPage({ data }) {
   // getting data from the query below, destructure data above
@@ -80,6 +81,7 @@ export default function OrderPage({ data }) {
         </fieldset>
         <fieldset className="order">
           <legend>Order</legend>
+          <PizzaOrder />
         </fieldset>
       </OrderStyles>
     </>
