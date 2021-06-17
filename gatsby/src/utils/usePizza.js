@@ -13,7 +13,7 @@ export default function usePizza({ pizzas, inputs }) {
       // everything before the item we want to remove
       ...order.slice(0, index),
       // everything after the item we want to remove
-      ...order.slice.slice(index + 1),
+      ...order.slice(index + 1),
     ]);
   }
   // 4. Send this data to the serverless function when they check out
