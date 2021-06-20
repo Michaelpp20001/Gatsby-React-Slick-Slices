@@ -7,6 +7,10 @@ export default function usePizza({ pizzas, inputs }) {
   // const [order, setOrder] = useState([]);
   // Now we access both our state and our update function (setOrder) via context
   const [order, setOrder] = useContext(OrderContext);
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+
   // 2. Make a function to add things to order
   function addToOrder(orderedPizza) {
     setOrder([...order, orderedPizza]);
@@ -20,11 +24,22 @@ export default function usePizza({ pizzas, inputs }) {
       ...order.slice(index + 1),
     ]);
   }
+
+  // this is the function taht is run when someone submits the form
+  async function submitOrder(e) {
+    e.preventDefault();
+    console.log(e);
+    setLoading(true);
+  }
   // 4. Send this data to the serverless function when they check out
 
   return {
     order,
     addToOrder,
     removeFromOrder,
+    error,
+    loading,
+    message,
+    submitOrder,
   };
 }
