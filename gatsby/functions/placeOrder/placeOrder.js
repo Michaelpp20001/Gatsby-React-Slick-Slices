@@ -33,9 +33,16 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+function wait(ms = 0) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 exports.handler = async (event, context) => {
+  await wait(5000);
   const body = JSON.parse(event.body);
-  // validate the data coming in is correct
+  // validate the data coming in is correct server side, should always be done!
   const requiredFields = ['email', 'name', 'order'];
 
   for (const field of requiredFields) {
@@ -48,6 +55,16 @@ exports.handler = async (event, context) => {
         }),
       };
     }
+  }
+
+  // make sure they actually have items in that order
+  if (!body.order.length) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        message: `Why would you order nothing?!`,
+      }),
+    };
   }
 
   // send the email

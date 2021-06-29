@@ -34,7 +34,7 @@ export default function usePizza({ pizzas, values }) {
     console.log(e);
     setLoading(true);
     setError(null);
-    setMessage('Go Eat');
+    // setMessage('Go Eat');
 
     // gather all the data
     const body = {
